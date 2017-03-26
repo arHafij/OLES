@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Controllers\Controller;
@@ -23,12 +24,6 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -71,8 +66,28 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'roles_id' => $role->getRoleIdBySlug( $data['user_type'] ),
+            'role_id' => $role->getRoleIdBySlug( $data['user_type'] ),
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function redirectTo(){
+        
+        $role = new Role();
+        
+        if($role->getRoleByAuthenticatedUser( Auth::user()) === 'admin') {
+
+            return '/admin';
+        }
+
+        if($role->getRoleByAuthenticatedUser( Auth::user()) === "teacher") {
+
+            return '/teacher';
+        }
+
+        if($role->getRoleByAuthenticatedUser( Auth::user()) === "student") {
+
+            return '/student';
+        }
     }
 }

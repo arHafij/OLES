@@ -18,12 +18,12 @@ class CreateLessonsTable extends Migration
             $table->text('lessons_title');
             $table->text('lessons_body');
             $table->string('lessons_subject_name');
-            $table->integer('users_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('lessons', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
