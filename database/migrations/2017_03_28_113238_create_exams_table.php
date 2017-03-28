@@ -21,7 +21,10 @@ class CreateExamsTable extends Migration
         });
 
         Schema::table('exams', function (Blueprint $table) {
-            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->foreign('lesson_id')
+                ->references('id')
+                ->on('lessons')
+                ->onDelete('cascade');
         });
     }
 

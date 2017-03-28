@@ -82,14 +82,9 @@
         @yield('content')
     </div>
 
-
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-
         @yield('script')
     </script>
 

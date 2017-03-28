@@ -21,7 +21,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::orderBy('id','DESC')->get();
         return view('teacher.lesson.index')->with('lessons',$lessons);
     }
 
@@ -80,7 +80,8 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lesson = Lesson::find($id);
+        return view('teacher.lesson.edit',['lesson'=>$lesson]);
     }
 
     /**
@@ -90,9 +91,14 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id , Request $request)
     {
-        //
+        $lesson = Lesson::find($id);
+        $lesson->lessons_title = $request->lessons_title;
+        $lesson->lessons_body = strip_tags($request->lessons_body);
+        $lesson->lessons_subject_name = $request->lessons_subject_name;
+        $lesson->save();
+        return redirect()->back()->with('success','Successfully Updated!');
     }
 
     /**
@@ -103,6 +109,9 @@ class LessonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lesson = Lesson::find($id);
+        $lesson->delete();
+        $lesson = Lesson::all();
+        return response($lesson,200);
     }
 }

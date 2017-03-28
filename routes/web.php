@@ -15,8 +15,10 @@ Route::get('/student', 'StudentController@index');
 Route::get('/teacher', 'TeacherController@index');
 
 //Lesson
-Route::resource('lesson', 'LessonController');
+Route::resource('/lesson', 'LessonController');
+
 //Exam
-Route::resource('exam', 'LessonController');
+Route::resource('/exam', 'ExamController');
+
 //Question
-Route::resource('question', 'LessonController');
+Route::resource('/question', 'QuestionController');
