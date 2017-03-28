@@ -16,17 +16,18 @@
 
                 <div class="panel-body">
                     <form action="{{route('exam.store')}}" method="post" class="exam-form">
-                            {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                            <div class="form-group">
-                                <label for="title">Exam Name:</label>
-                                <input type="text" class="form-control" name="exam__name-input">
-                            </div>
+                        <div class="form-group">
+                            <label for="title">Exam Name:</label>
+                            <input type="text" class="form-control" name="name">
+                            <input type="hidden" value="{{ $_GET['lesson_id']}}" name="lesson_id">
+                        </div>
 
-                            <div class="form-group text-right">
-                                <input type="submit" value="submit" class="btn btn-success">
-                            </div>
-                        </form>
+                        <div class="form-group text-right">
+                            <input type="submit" value="submit" class="btn btn-success">
+                        </div>
+                    </form>
                 </div>
             </div>
          </div>

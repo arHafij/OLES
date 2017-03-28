@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -11,9 +12,11 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('teacher.exam.index');
+        $lesson_id = intval($request->query('lesson_id'));
+        $exams = Exam::where('lesson_id',$lesson_id)->get();
+        return view('teacher.exam.index',['exams'=>$exams]);
     }
 
     /**
@@ -23,7 +26,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('teacher.exam.create');
+
     }
 
     /**
@@ -34,7 +37,15 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required'
+        ]);
+
+        $exam = new Exam();
+        $exam->name = $request->name;
+        $exam->lesson_id = $request->lesson_id;
+        $exam->save();
+        return redirect()->route('question.create')->with('success','Successfully created a exam.');
     }
 
     /**
@@ -45,7 +56,7 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

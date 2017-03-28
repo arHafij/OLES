@@ -2,9 +2,6 @@
 
 @section('style')
 
-    .lesson-exam-wrapper{
-        border-bottom: 1px solid #dddddd;
-    }
 @endsection
 
 @section('content')
@@ -19,63 +16,38 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="panel panel-default row">
-
                     <h4 class="panel-heading">My Lesson</h4>
 
-                    {{--Lesson and Exam --}}
-                    @if(count($lessons) > 0)
-                        @foreach($lessons as $lesson)
-                             <div class="panel-body lesson-exam-wrapper">
-                        {{--Lessons--}}
-                        <div class="lesson-wrapper col-md-6">
-                            <div class="lesson">
-                               <div class="lesson__title">{{ $lesson->lessons_title }}</div>
-                               <div class="lesson-action" data-lesson-id="{{ $lesson->id }}">
-                                   <a href="{{ route('lesson.show',['lesson'=>$lesson->id]) }}" class="btn btn-primary btn-sm">View</a> |
-                                   <a href="{{ route('lesson.edit',['lesson'=>$lesson->id]) }}" class="btn btn-info btn-sm">Edit</a> |
-                                   <a href="#" class="btn btn-danger btn-sm lesson-action__delete"  data-toggle="modal" data-target="#myModal">Delete</a> |
-                                   <a href="#" class="btn btn-success btn-sm">New Exam</a>
-                               </div>
-                           </div>
-                        </div>
-                        {{--Exams--}}
-                        <div class="exam-wrapper col-md-6">
-                            <div class="exam">
-                                <div class="exam__name">Exam-1</div>
-                                <div class="exam-action">
-                                    <a href="#">View</a> |
-                                    <a href="#">Edit</a> |
-                                    <a href="#">Delete</a>
-                                </div>
-                            </div>
-                            <div class="exam">
-                                <div class="exam__name">Exam-1</div>
-                                <div class="exam-action">
-                                    <a href="#">View</a> |
-                                    <a href="#">Edit</a> |
-                                    <a href="#">Delete</a>
-                                </div>
-                            </div>
-                        </div>
+                    {{--Lesson--}}
+                    <div class="panel-body">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <td>#</td>
+                                <td>Lesson Title</td>
+                                <td>Action</td>
+                            </tr>
+                            @if(count($lessons) > 0)
+                                @foreach($lessons as $lesson)
+                                <tr>
+                                    <td>{{$lesson->id}}</td>
+                                    <td>{{$lesson->lessons_title}}</td>
+                                    <td class="lesson-action" data-lesson-id="{{$lesson->id}}">
+                                        <a href="{{route('lesson.show',$lesson->id)}}" class="btn btn-default">view</a> |
+                                        <a href="{{route('lesson.edit',$lesson->id)}}" class="btn btn-primary">edit</a> |
+                                        <a data-toggle="modal" data-target="#myModal" href="#"
+                                           class="btn btn-danger lesson-action__delete">delete</a> |
+                                        <a href="{{route('exam.index',['lesson_id'=>$lesson->id])}}" class="btn btn-success">exams</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td>No Lesson</td>
+                                </tr>
+                            @endif
+                        </table>
                     </div>
-                        @endforeach
-                    @else
-                        <div class="panel-body lesson-exam-wrapper">
-                        {{--Lessons--}}
-                        <div class="lesson-wrapper col-md-6">
-                            <div class="lesson">
-                                <p>Sorry! No lesson</p>
-                            </div>
-                        </div>
-                        {{--Exams--}}
-                        <div class="exam-wrapper col-md-6">
-                            <div class="exam">
-                               <p>No exam</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                </div>
+                 </div>
             </div>
         </div><!--./row-->
     </div><!--./container-->

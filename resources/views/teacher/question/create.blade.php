@@ -12,35 +12,42 @@
         <!-- Main Content -->
          <div class="col-md-9">
             <div class="panel panel-default">
-                <h4 class="panel-heading">Create Lesson</h4>
+                <h4 class="panel-heading">Create Question</h4>
 
                 <div class="panel-body">
-                    <form action="{{route('lesson.store')}}" method="post" class=lesson-form">
-                            {{ csrf_field() }}
-                            <div class="form-group">
-                                <label for="subject_name">Subject Name:</label>
-                                <select class="form-control" name="lessons_subject_name">
-                                    <option value="bangla">Bangla</option>
-                                    <option value="English">English</option>
-                                    <option value="mathematics">Math</option>
-                                    <option value="physics">Physics</option>
-                                    <option value="chemestry">Chemestry</option>
-                                    <option value="general Knowledge">General Knowledge</option>
-                                </select>
+                    @include('teacher.partials.alert')
+                    <form action="{{route('question.store')}}" method="post" class=question-form">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                                <label for="title">Question Description:</label>
+                                <textarea type="text" class="form-control" name="name" rows="3"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="title">Lesson Name:</label>
-                                <input type="text" class="form-control" name="lessons_title">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="comment">Lesson content:</label>
-                                <textarea class="form-control" rows="5"  name="lessons_body"></textarea>
-                            </div>
-                            <div class="form-group text-right">
-                                <input type="submit" value="submit" class="btn btn-success">
-                            </div>
-                        </form>
+                        {{--Option a--}}
+                        <div class="form-group">
+                            <input class="form-control" name="opt_a" placeholder="Option a">
+                        </div>
+                        {{--Option b--}}
+                        <div class="form-group">
+                            <input class="form-control" name="opt_b" placeholder="Option b">
+                        </div>
+                        {{--Option c--}}
+                        <div class="form-group">
+                            <input class="form-control" name="opt_c" placeholder="Option c">
+                        </div>
+                        {{--Option d--}}
+                        <div class="form-group">
+                            <input class="form-control" name="opt_d" placeholder="Option d">
+                        </div>
+                        {{--Answer--}}
+                        <div class="form-group">
+                            <input class="form-control" name="answer" placeholder="Answer">
+                        </div>
+                        {{--Exam id--}}
+                        <input type="hidden" value="{{ $exam->id }}" name="exam_id">
+                        <div class="form-group text-right">
+                            <input type="submit" value="submit" class="btn btn-success">
+                        </div>
+                    </form>
                 </div>
             </div>
          </div>
