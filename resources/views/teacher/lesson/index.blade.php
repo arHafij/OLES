@@ -32,11 +32,11 @@
                                     <td>{{$lesson->id}}</td>
                                     <td>{{$lesson->lessons_title}}</td>
                                     <td class="lesson-action" data-lesson-id="{{$lesson->id}}">
-                                        <a href="{{route('lesson.show',$lesson->id)}}" class="btn btn-default">view</a> |
-                                        <a href="{{route('lesson.edit',$lesson->id)}}" class="btn btn-primary">edit</a> |
+                                        <a href="{{route('lesson.show',$lesson->id)}}" class="btn btn-sm btn-primary">view</a> |
+                                        <a href="{{route('lesson.edit',$lesson->id)}}" class="btn btn-sm btn-info">edit</a> |
                                         <a data-toggle="modal" data-target="#myModal" href="#"
-                                           class="btn btn-danger lesson-action__delete">delete</a> |
-                                        <a href="{{route('exam.index',['lesson_id'=>$lesson->id])}}" class="btn btn-success">exams</a>
+                                           class="btn btn-sm btn-danger lesson-action__delete">delete</a> |
+                                        <a href="{{route('exam.index',['lesson_id'=>$lesson->id])}}" class="btn btn-sm btn-success">exams</a>
                                     </td>
                                 </tr>
                                 @endforeach

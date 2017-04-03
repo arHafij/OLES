@@ -1,7 +1,9 @@
 @extends('teacher.template')
 
 @section('style')
-
+.add-question-btn{
+    padding-bottom:20px;
+}
 @endsection
 
 @section('content')
@@ -16,11 +18,19 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="panel panel-default row">
-                    <h4 class="panel-heading">Exams</h4>
+                    <h2 class="panel-heading">#Lesson:{{ $lesson->lessons_title  }}</h2>
 
                     {{--Lesson--}}
                     <div class="panel-body">
+
+                        <div class="add-question-btn text-right">
+                            <a href="" class="btn btn-success">Add Question</a>
+                        </div>
+
                         <table class="table table-bordered text-center">
+                            <tr>
+                                <td colspan="7">{{$exam->name}} 's question</td>
+                            </tr>
                             <tr>
                                 <td>#</td>
                                 <td>Question Name</td>

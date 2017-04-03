@@ -1,7 +1,9 @@
 @extends('teacher.template')
 
 @section('style')
-
+    .add-exam-btn{
+        padding-bottom: 20px;
+    }
 @endsection
 
 @section('content')
@@ -16,15 +18,24 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="panel panel-default row">
-                    <h4 class="panel-heading">Exams</h4>
+                    <h2 class="panel-heading">
+                       #Lessson : {{ $lesson_name }}
+                    </h2>
 
-                    {{--Lesson--}}
+                    {{--Exam--}}
                     <div class="panel-body">
+                        {{--Add Exam btn--}}
+                        <div class="add-exam-btn text-right">
+                            <a href="" class="btn btn-success">Add Exam</a>
+                        </div>
                         <table class="table table-bordered text-center">
                             <tr>
+                                <td colspan="4">Exam</td>
+                            </tr>
+                            <tr>
                                 <td>#</td>
-                                <td>Exam Name</td>
-                                <td>Number of question</td>
+                                <td>Title</td>
+                                <td>Question Quantity</td>
                                 <td>Action</td>
                             </tr>
                             @if(count($exams) > 0)
@@ -34,10 +45,10 @@
                                         <td>{{$exam->name}}</td>
                                         <td>20</td>
                                         <td>
-                                            <a href="{{ route('question.index',['exam_id'=>$exam->id]) }}" class="btn btn-default">view</a> |
+                                            <a href="{{ route('exam.show',['exam'=>$exam->id]) }}" class="btn btn-default">view</a> |
                                             <a href="#" class="btn btn-success">edit</a> |
                                             <a href="#" class="btn btn-danger">delete</a>
-                                            <a href="{{route('question.create',['exam_id'=>$exam->id])}}" class="btn btn-danger">add question</a>
+                                            <a href="{{route('question.create',['exam_id'=>$exam->id])}}" class="btn btn-danger">Add Question</a>
                                         </td>
                                     </tr>
                                 @endforeach

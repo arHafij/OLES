@@ -22,3 +22,6 @@ Route::resource('/exam', 'ExamController');
 
 //Question
 Route::resource('/question', 'QuestionController');
+
+//Result
+Route::post('/result','ResultController@store')->name('result.store');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\Lesson;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,10 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         $exam_id = intval($request->query('exam_id'));
+        $exam= Exam::find($exam_id);
+        $lesson = Lesson::find($exam->lesson_id);
         $questions = Question::where('exam_id',$exam_id)->get();
-        return view('teacher.question.index',['questions'=>$questions]);
+        return view('teacher.question.index',compact('lesson','questions','exam'));
     }
 
     /**
@@ -28,8 +31,11 @@ class QuestionController extends Controller
     public function create(Request $request)
     {
         $exam_id = intval($request->query('exam_id'));
+        $total_questions = count(Question::where('exam_id',$exam_id)->get());
+//        dd($total_question);
         $exam = Exam::where('id',$exam_id)->first();
-        return view('teacher.question.create',['exam'=>$exam]);
+        $lesson = $exam->lesson;
+        return view('teacher.question.create',compact('exam','lesson','total_questions'));
     }
 
     /**

@@ -41,7 +41,7 @@
                     </button>
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        OLE
+                        <img src="{{asset('img/logo.png')}}" alt="logo" class="" style="height: 30px; width: 30px; margin-top: -5px;">
                     </a>
                 </div>
 

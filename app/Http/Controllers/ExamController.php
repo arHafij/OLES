@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\Lesson;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -15,8 +17,9 @@ class ExamController extends Controller
     public function index(Request $request)
     {
         $lesson_id = intval($request->query('lesson_id'));
+        $lesson_name = Lesson::where('id',$lesson_id)->value('lessons_title');
         $exams = Exam::where('lesson_id',$lesson_id)->get();
-        return view('teacher.exam.index',['exams'=>$exams]);
+        return view('teacher.exam.index',compact('exams', 'lesson_name'));
     }
 
     /**
@@ -56,6 +59,12 @@ class ExamController extends Controller
      */
     public function show($id)
     {
+        $counter = 0;
+        $exam = Exam::find($id)->first();
+        $lesson = Lesson::where('id',$exam->lesson_id)->first();
+        $total_questions = count(Question::where('exam_id',$id)->get());
+        $questions = Exam::find($id)->questions;
+        return view('teacher.exam.show',compact('lesson','exam','questions','counter','total_questions'));
 
     }
 

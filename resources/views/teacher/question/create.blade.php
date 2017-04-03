@@ -12,7 +12,19 @@
         <!-- Main Content -->
          <div class="col-md-9">
             <div class="panel panel-default">
-                <h4 class="panel-heading">Create Question</h4>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h2>
+                                <a href="{{ route('lesson.show',['lesson'=>$lesson->id]) }}">{{ $lesson->lessons_title }}</a>
+                            </h2>
+                            <p class="exam-info">
+                                Exam :  <a href="{{ route('exam.show',['exam'=>$exam->id]) }}">{{ $exam->name }}</a>
+                                Total Questions : <span class="label label-primary">{{ $total_questions }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="panel-body">
                     @include('teacher.partials.alert')
@@ -24,23 +36,33 @@
                             </div>
                         {{--Option a--}}
                         <div class="form-group">
-                            <input class="form-control" name="opt_a" placeholder="Option a">
+                            <label for="opt_a">Option a:</label>
+                            <input class="form-control" name="opt_a">
                         </div>
                         {{--Option b--}}
                         <div class="form-group">
-                            <input class="form-control" name="opt_b" placeholder="Option b">
+                            <label for="opt_b">Option b:</label>
+                            <input class="form-control" name="opt_b">
                         </div>
                         {{--Option c--}}
                         <div class="form-group">
-                            <input class="form-control" name="opt_c" placeholder="Option c">
+                            <label for="opt_c">Option c:</label>
+                            <input class="form-control" name="opt_c" >
                         </div>
                         {{--Option d--}}
                         <div class="form-group">
-                            <input class="form-control" name="opt_d" placeholder="Option d">
+                            <label for="opt_d">Option d:</label>
+                            <input class="form-control" name="opt_d">
                         </div>
                         {{--Answer--}}
                         <div class="form-group">
-                            <input class="form-control" name="answer" placeholder="Answer">
+                            <label for="subject_name">Answer Option:</label>
+                            <select class="form-control" name="answer">
+                                <option value="opt_a">Option a</option>
+                                <option value="opt_b">Option b</option>
+                                <option value="opt_c">Option c</option>
+                                <option value="opt_d">Option d</option>
+                            </select>
                         </div>
                         {{--Exam id--}}
                         <input type="hidden" value="{{ $exam->id }}" name="exam_id">
