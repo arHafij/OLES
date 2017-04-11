@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        
+
         <!-- Sidebar -->
         <div class="col-md-3">
            @include('teacher.partials.sidebar')
         </div>
-        
+
         <!-- Main Content -->
          <div class="col-md-9">
             <div class="panel panel-default">
@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label for="title">Exam Name:</label>
                             <input type="text" class="form-control" name="name">
-                            <input type="hidden" value="{{ $_GET['lesson_id']}}" name="lesson_id">
+                            <input type="hidden" value="{{ $lesson->id }}" name="lesson_id">
                         </div>
 
                         <div class="form-group text-right">

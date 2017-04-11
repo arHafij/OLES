@@ -14,12 +14,11 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($lesson_id)
     {
-        $lesson_id = intval($request->query('lesson_id'));
-        $lesson_name = Lesson::where('id',$lesson_id)->value('lessons_title');
+        $lesson = Lesson::find($lesson_id);
         $exams = Exam::where('lesson_id',$lesson_id)->get();
-        return view('teacher.exam.index',compact('exams', 'lesson_name'));
+        return view('teacher.exam.index',compact('exams', 'lesson'));
     }
 
     /**
@@ -27,9 +26,10 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lesson_id)
     {
-
+        $lesson = Lesson::find($lesson_id);
+        return view('teacher.exam.create',compact('lesson'));
     }
 
     /**

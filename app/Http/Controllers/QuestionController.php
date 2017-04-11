@@ -14,11 +14,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($lesson_id, $exam_id)
     {
-        $exam_id = intval($request->query('exam_id'));
-        $exam= Exam::find($exam_id);
-        $lesson = Lesson::find($exam->lesson_id);
+        $lesson = Lesson::find($lesson_id);
+        $exam = Exam::find($exam_id);
         $questions = Question::where('exam_id',$exam_id)->get();
         return view('teacher.question.index',compact('lesson','questions','exam'));
     }
@@ -28,9 +27,8 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create($exam_id)
     {
-        $exam_id = intval($request->query('exam_id'));
         $total_questions = count(Question::where('exam_id',$exam_id)->get());
 //        dd($total_question);
         $exam = Exam::where('id',$exam_id)->first();
@@ -44,7 +42,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $exam_id)
     {
         $this->validate($request,[
             'name'=>'required',
@@ -62,7 +60,7 @@ class QuestionController extends Controller
         $question->opt_c = $request->opt_c;
         $question->opt_d = $request->opt_d;
         $question->answer = $request->answer;
-        $question->exam_id = $request->exam_id;
+        $question->exam_id = $exam_id;
         $question->save();
         return redirect()->back()->with('success','Successfully added a Question. You can try more!!');
     }

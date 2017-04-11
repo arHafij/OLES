@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        
+
         <!-- Sidebar -->
         <div class="col-md-3">
            @include('teacher.partials.sidebar')
         </div>
-        
+
         <!-- Main Content -->
          <div class="col-md-9">
             <div class="panel panel-default">
@@ -16,7 +16,7 @@
 
                 <div class="panel-body">
                     @include('teacher.partials.alert')
-                    <form action="{{route('lesson.store')}}" method="post" class=lesson-form">
+                    <form action="{{route('lessons.store')}}" method="post" class=lesson-form">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="subject_name">Subject Name:</label>

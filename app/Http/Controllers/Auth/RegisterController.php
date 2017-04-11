@@ -62,13 +62,27 @@ class RegisterController extends Controller
     {
         $role = new Role();
 
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'role_id' => $role->getRoleIdBySlug( $data['user_type'] ),
-            'password' => bcrypt($data['password']),
-        ]);
+        if( $role->getRoleBySlug( $data['user_type'] ) == 'student' ) {
+            return User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'role_id' => $role->getRoleIdBySlug( $data['user_type'] ),
+                'password' => bcrypt($data['password'])
+            ]);
+        }
+
+        if( $role->getRoleBySlug( $data['user_type'] ) == 'teacher' ) {
+            return User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'role_id' => $role->getRoleIdBySlug( $data['user_type'] ),
+                'degree' => $data['degree'],
+                'password' => bcrypt($data['password'])
+            ]);
+        }
+      
     }
 
     protected function redirectTo(){

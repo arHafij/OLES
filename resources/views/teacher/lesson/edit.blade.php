@@ -16,7 +16,7 @@
 
                     <div class="panel-body">
                         @include('teacher.partials.alert')
-                        <form action="{{route('lesson.update',['lesson'=>$lesson->id])}}" method="post" class=lesson-form">
+                        <form action="{{ route('lessons.update',$lesson->id) }}" method="post" class=lesson-form">
                             <input type="hidden" name="_method" value="put">
                             {{--Lesson Name--}}
                             <div class="form-group">

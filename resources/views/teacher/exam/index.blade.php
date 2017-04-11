@@ -19,14 +19,14 @@
             <div class="col-md-9">
                 <div class="panel panel-default row">
                     <h2 class="panel-heading">
-                       #Lessson : {{ $lesson_name }}
+                       #Lessson : {{ $lesson->lessons_title }}
                     </h2>
 
                     {{--Exam--}}
                     <div class="panel-body">
                         {{--Add Exam btn--}}
                         <div class="add-exam-btn text-right">
-                            <a href="" class="btn btn-success">Add Exam</a>
+                            <a href="{{ route('exams.create',['lesson_id'=>$lesson->id]) }}" class="btn btn-success">Add Exam</a>
                         </div>
                         <table class="table table-bordered text-center">
                             <tr>
@@ -45,7 +45,7 @@
                                         <td>{{$exam->name}}</td>
                                         <td>20</td>
                                         <td>
-                                            <a href="{{ route('exam.show',['exam'=>$exam->id]) }}" class="btn btn-default">view</a> |
+                                            <a href="{{ route('questions', ['lesson'=>$lesson->id,'exam'=>$exam->id]) }}" class="btn btn-default">view</a> |
                                             <a href="#" class="btn btn-success">edit</a> |
                                             <a href="#" class="btn btn-danger">delete</a>
                                             <a href="{{route('question.create',['exam_id'=>$exam->id])}}" class="btn btn-danger">Add Question</a>

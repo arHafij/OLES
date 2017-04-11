@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -20,12 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('confirmation_code')->nullable();
-            $table->boolean('confirmed')->default(false);
+            $table->text('degree')->nullable();
             $table->integer('role_id')->unsigned();
+            $table->boolean('confirmed')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -35,6 +36,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');  
+        Schema::dropIfExists('users');  
     }
 }

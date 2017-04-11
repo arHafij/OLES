@@ -18,19 +18,27 @@
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="panel panel-default row">
-                    <h2 class="panel-heading">#Lesson:{{ $lesson->lessons_title  }}</h2>
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2>
+                                    Lesson: <a href="{{ route('lessons.show',['lesson'=>$lesson->id]) }}">{{ $lesson->lessons_title }}</a>
+                                </h2>
+                                <p class="exam-info">
+                                    Exam : <strong>{{ $exam->name }}</strong
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     {{--Lesson--}}
                     <div class="panel-body">
 
                         <div class="add-question-btn text-right">
-                            <a href="" class="btn btn-success">Add Question</a>
+                            <a href="{{ route('questions.create',$exam->id) }}" class="btn btn-success">Add Question</a>
                         </div>
 
                         <table class="table table-bordered text-center">
-                            <tr>
-                                <td colspan="7">{{$exam->name}} 's question</td>
-                            </tr>
                             <tr>
                                 <td>#</td>
                                 <td>Question Name</td>

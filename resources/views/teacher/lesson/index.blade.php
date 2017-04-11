@@ -32,11 +32,11 @@
                                     <td>{{$lesson->id}}</td>
                                     <td>{{$lesson->lessons_title}}</td>
                                     <td class="lesson-action" data-lesson-id="{{$lesson->id}}">
-                                        <a href="{{route('lesson.show',$lesson->id)}}" class="btn btn-sm btn-primary">view</a> |
-                                        <a href="{{route('lesson.edit',$lesson->id)}}" class="btn btn-sm btn-info">edit</a> |
+                                        <a href="{{route('lessons.show',$lesson->id)}}" class="btn btn-sm btn-primary">view</a> |
+                                        <a href="{{route('lessons.edit',$lesson->id)}}" class="btn btn-sm btn-info">edit</a> |
                                         <a data-toggle="modal" data-target="#myModal" href="#"
                                            class="btn btn-sm btn-danger lesson-action__delete">delete</a> |
-                                        <a href="{{route('exam.index',['lesson_id'=>$lesson->id])}}" class="btn btn-sm btn-success">exams</a>
+                                        <a href="{{ route('exams',['id'=>$lesson->id]) }}" class="btn btn-sm btn-success">exams</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -70,7 +70,7 @@
 @endsection
 
 @section('script')
-    var url = '/lesson/' + $('.lesson-action').data('lesson-id');
+    var url = '/lessons/' + $('.lesson-action').data('lesson-id');
     var token = "{{ csrf_token() }}";
 
     $('#myModal').on('shown.bs.modal');

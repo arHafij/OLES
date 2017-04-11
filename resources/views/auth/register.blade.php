@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('style')
+    .display-none{
+        display: none;
+    }
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -41,19 +47,38 @@
                         </div>
                         
                         <!-- User Types -->
-                          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} user-type">
                             <label for="name" class="col-md-4 control-label">I am a </label>
 
                             <div class="col-md-6" style="line-height: 40px;">
 
-                                <input type="radio" name="user_type" value="teacher">Teacher
-                                <input type="radio" name="user_type" value="student">Student
+                                <input type="radio" name="user_type" value="teacher" class="user-type__teacher-btn">Teacher
+                                <input type="radio" name="user_type" value="student" class="user-type__student-btn">Student
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('user_type') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <!-- collpase -->
+                        <div class="user-collapse-info display-none">
+
+                            <!-- degree -->
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">Your degree</label>
+
+                                <div class="col-md-6">
+                                    <input id="degree" type="text" class="form-control" name="degree" value="{{ old('degree') }}">
+
+                                    @if ($errors->has('degree'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('degree') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
 
@@ -109,4 +134,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    $('.user-type__teacher-btn').click(function(){
+        $('.user-collapse-info').show(1000);
+    });
+    $('.user-type__student-btn').click(function(){
+        $('.user-collapse-info').hide(300);
+    });
 @endsection
