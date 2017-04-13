@@ -16,7 +16,7 @@
 
                 <div class="panel-body">
                     @include('teacher.partials.alert')
-                    <form action="{{route('lessons.store')}}" method="post" class=lesson-form">
+                    <form action="{{route('lessons.store')}}" method="post" class="lesson-form">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="subject_name">Subject Name:</label>
@@ -50,5 +50,5 @@
 @endsection
 
 @section('script')
-        CKEDITOR.replace( 'lessons_body' );
+    CKEDITOR.replace( 'lessons_body' );
 @endsection

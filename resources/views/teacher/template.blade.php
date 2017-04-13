@@ -8,20 +8,17 @@
 
     <title>OLE</title>
 
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <style>
+
         body{
+
             width: 100%;
             padding-top: 100px;
         }
-
-        .aside {
-            position: fixed;
-            width: 20%;
-        }
-
         @yield('style')
+
     </style>
 
 </head>
@@ -41,7 +38,7 @@
                     </button>
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true">OLE</span>
                     </a>
                 </div>
 
@@ -84,9 +81,6 @@
 
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        @yield('script')
-    </script>
-
+    <script>@yield('script')</script>
 </body>
 </html>
