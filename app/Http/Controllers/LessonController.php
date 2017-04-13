@@ -21,8 +21,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = Lesson::orderBy('id','DESC')->get();
-        return view('teacher.lesson.index')->with('lessons',$lessons);
+        $counter = 0;
+        $lessons = Lesson::where('user_id',Auth::id())->orderBy('id','DESC')->get();
+        return view('teacher.lesson.index',compact('lessons','counter'));
     }
 
     /**

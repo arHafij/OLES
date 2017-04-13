@@ -16,9 +16,10 @@ class ExamController extends Controller
      */
     public function index($lesson_id)
     {
+        $examObj = new Exam();
         $lesson = Lesson::find($lesson_id);
         $exams = Exam::where('lesson_id',$lesson_id)->get();
-        return view('teacher.exam.index',compact('exams', 'lesson'));
+        return view('teacher.exam.index',compact('exams', 'lesson','examObj'));
     }
 
     /**
@@ -38,17 +39,18 @@ class ExamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$lesson_id)
     {
         $this->validate($request,[
             'name'=>'required'
         ]);
 
+
         $exam = new Exam();
         $exam->name = $request->name;
-        $exam->lesson_id = $request->lesson_id;
+        $exam->lesson_id = $lesson_id;
         $exam->save();
-        return redirect()->route('question.create')->with('success','Successfully created a exam.');
+        return redirect()->route('exams',$lesson_id);
     }
 
     /**

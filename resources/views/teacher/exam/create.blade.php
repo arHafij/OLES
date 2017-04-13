@@ -12,10 +12,10 @@
         <!-- Main Content -->
          <div class="col-md-9">
             <div class="panel panel-default">
-                <h4 class="panel-heading">Create Lesson</h4>
+                <h4 class="panel-heading">Create Exam</h4>
 
                 <div class="panel-body">
-                    <form action="{{route('exam.store')}}" method="post" class="exam-form">
+                    <form action="{{route('exams.store',$lesson->id)}}" method="post" class="exam-form">
                         {{ csrf_field() }}
 
                         <div class="form-group">

@@ -20,16 +20,16 @@
 
                     {{--Lesson--}}
                     <div class="panel-body">
-                        <table class="table table-bordered text-center">
+                        <table class="table table-stripped text-center">
                             <tr>
-                                <td>#</td>
-                                <td>Lesson Title</td>
-                                <td>Action</td>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Lesson Title</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             @if(count($lessons) > 0)
                                 @foreach($lessons as $lesson)
                                 <tr>
-                                    <td>{{$lesson->id}}</td>
+                                    <td>{{ ++$counter }}</td>
                                     <td>{{$lesson->lessons_title}}</td>
                                     <td class="lesson-action" data-lesson-id="{{$lesson->id}}">
                                         <a href="{{route('lessons.show',$lesson->id)}}" class="btn btn-sm btn-primary">view</a> |

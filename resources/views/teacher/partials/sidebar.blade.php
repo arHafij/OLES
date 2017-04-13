@@ -1,12 +1,20 @@
 <!-- Sidebar -->
-<div class="panel panel-default">
-    <div class="panel-heading">Sidebar</div>
-    <div class="panel-body">
-        <ul class="nav">
-            <li><a href="{{ route('lessons') }}">Lesson</a></li>
-            <li><a href="{{ route('lessons.create') }}">Create Lesson</a></li>
-            <li><a href="">Poppular Lesson</a></li>
-            <li><a href="">History</a></li>
-        </ul>
-    </div>
+<div class="list-group">
+    <li class="list-group-item list-group-item-default text-center">Sidebar</li>
+    <a href="{{ route('lessons') }}" class="list-group-item">
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+         Lesson
+    </a>
+    <a href="{{ route('lessons.create') }}" class="list-group-item">
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        Create Lesson
+    </a>
+    <a href="#" class="list-group-item">
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        Poppular Lesson
+    </a>
+    <a href="#" class="list-group-item">
+        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        History
+    </a>
 </div>

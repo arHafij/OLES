@@ -20,13 +20,8 @@
                 <div class="panel panel-default row">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-md-12 text-center">
-                                <h2>
-                                    Lesson: <a href="{{ route('lessons.show',['lesson'=>$lesson->id]) }}">{{ $lesson->lessons_title }}</a>
-                                </h2>
-                                <p class="exam-info">
-                                    Exam : <strong>{{ $exam->name }}</strong
-                                </p>
+                            <div class="col-md-12">
+                                <h4>Questions List</h4>
                             </div>
                         </div>
                     </div>
@@ -35,18 +30,19 @@
                     <div class="panel-body">
 
                         <div class="add-question-btn text-right">
-                            <a href="{{ route('questions.create',$exam->id) }}" class="btn btn-success">Add Question</a>
+                            <a href="{{ route('exams',$lesson->id) }}" class="btn btn-default btn-sm">All Exam</a>
+                            <a href="{{ route('questions.create',$exam->id) }}" class="btn btn-default btn-sm">Add Question</a>
                         </div>
 
-                        <table class="table table-bordered text-center">
+                        <table class="table table-stripped text-center">
                             <tr>
-                                <td>#</td>
-                                <td>Question Name</td>
-                                <td>Option a</td>
-                                <td>Option b</td>
-                                <td>Option c</td>
-                                <td>Option c</td>
-                                <td>Action</td>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Question Name</th>
+                                <th class="text-center">Option a</th>
+                                <th class="text-center">Option b</th>
+                                <th class="text-center">Option c</th>
+                                <th class="text-center">Option c</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             @if(count($questions) > 0)
                                 @foreach($questions as $question)
@@ -58,8 +54,8 @@
                                         <td>{{$question->opt_c}}</td>
                                         <td>{{$question->opt_c}}</td>
                                         <td>
-                                            <a href="#" class="btn btn-success">edit</a> |
-                                            <a href="#" class="btn btn-danger">delete</a>
+                                            <a href="#" class="btn btn-success btn-sm">edit</a> |
+                                            <a href="#" class="btn btn-danger btn-sm">delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

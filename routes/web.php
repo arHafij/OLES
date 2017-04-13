@@ -26,6 +26,7 @@ Route::get('/lessons/{id}/edit', 'LessonController@edit')->name('lessons.edit');
 //Exam
 Route::resource('/exam', 'ExamController');
 Route::get('/lessons/{id}/exams','ExamController@index')->name('exams');
+Route::post('/lessons/{id}/exams','ExamController@store')->name('exams.store');
 Route::get('/lessons/{id}/exams/create','ExamController@create')->name('exams.create');
 
 //Question
