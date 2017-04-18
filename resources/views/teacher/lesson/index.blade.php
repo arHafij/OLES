@@ -21,11 +21,11 @@
                     {{--Lesson--}}
                     <div class="panel-body">
                             @if(count($lessons) > 0)
-                            @foreach($lessons->chunk(3) as $chunk_lessons)
+                            @foreach($lessons->chunk(2) as $chunk_lessons)
                             <div class="row">
                                 @foreach($chunk_lessons as $lesson)
-                                    <div class="col-md-4">
-                                        <div class="thumbnail">
+                                    <div class="col-md-6">
+                                        <div class="thumbnail" style="display:block;">
                                             <div class="caption">
                                                 <h3>{{ $lesson->lessons_title }}</h3>
                                                 @if( strlen($lesson->lessons_body) >= 150 )
@@ -33,14 +33,23 @@
                                                 @else
                                                     <p>{{ $lesson->lessons_body }}</p>
                                                 @endif
-                                                <p class="lesson-action text-center" data-lesson-id="{{$lesson->id}}">
+                                                <hr>
+                                                <p class="price-details text-center">
+                                                    @if($lesson->lessons_price > 0.00)
+                                                        $ {{$lesson->lessons_price}}
+                                                    @else
+                                                        Free
+                                                    @endif
+                                                </p>
+                                                <hr>
+                                                <p class="lesson-action text-center" >
                                                     <a title="view" href="{{ route('lessons.show',$lesson->id) }}" class="btn btn-default " role="button">
                                                         <span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                                     </a>
                                                     <a title="edit" href="{{route('lessons.edit',$lesson->id)}}" class="btn btn-default " role="button">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
-                                                    <a title="delete" href="#" class="btn btn-default " role="button" data-toggle="modal" data-target="#myModal">
+                                                    <a title="delete" href="#" class="btn btn-default lesson-action__delete-link " data-lesson-id="{{$lesson->id}}" role="button" data-toggle="modal" data-target="#myModal">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </a>
                                                 </p>
@@ -90,13 +99,14 @@
 @endsection
 
 @section('script')
-    var url = '/lessons/' + $('.lesson-action').data('lesson-id');
+    var url;
     var token = "{{ csrf_token() }}";
 
     $('#myModal').on('shown.bs.modal');
 
-    $(".lesson-action__delete").click(function(event){
+    $(".lesson-action__delete-link").click(function(event){
         event.preventDefault();
+        url = '/lessons/' + $('.lesson-action__delete-link').data('lesson-id');
     });
 
     $(".modal-footer__yes-btn").click(function(){

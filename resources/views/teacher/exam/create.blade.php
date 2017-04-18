@@ -25,7 +25,9 @@
                         </div>
 
                         <div class="form-group text-right">
-                            <input type="submit" value="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i> Save
+                            </button
                         </div>
                     </form>
                 </div>

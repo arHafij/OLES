@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLessonsTable extends Migration
+class CreateEarnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('earns', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('lessons_title');
-            $table->text('lessons_body');
-            $table->string('lessons_subject_name');
-            $table->double('lessons_price',8,2)->default(0);
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->double('amount',8,2);
+            $table->integer('role_id')->unsigned();
+            $table->integer('payment_id')->unsigned();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -33,6 +30,6 @@ class CreateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('earns');
     }
 }

@@ -4,23 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>OLE</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body{font-family: 'Raleway', sans-serif;}
+        main{margin: 50px 0px;}
+        footer{ background-color:#fff; padding:40px; position:absolute; bottom: 0; width: 100%; }
+        @yield('style')
+    </style>
 
-    <style>@yield('style')</style>
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
 </head>
 <body>
     <div id="app">
@@ -37,14 +34,15 @@
                     </button>
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        OLE
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true">OLE</span>
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{route('student')}}">Home</a></li>
+                        <li><a href="{{ route('student.lessons')}}">Lessons</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,8 +76,14 @@
                 </div>
             </div>
         </nav>
-
         @yield('content')
+        <footer class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    &copy; 2017 OLE
+                </div>
+            </div><!--./row-->
+        </footer>
     </div>
 
     <!-- Scripts -->

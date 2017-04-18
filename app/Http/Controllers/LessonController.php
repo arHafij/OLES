@@ -56,9 +56,10 @@ class LessonController extends Controller
         $lesson->lessons_title = $request->lessons_title;
         $lesson->lessons_body = strip_tags($request->lessons_body);
         $lesson->lessons_subject_name = $request->lessons_subject_name;
+        $lesson->lessons_price = $request->lessons_price;
         $lesson->user_id = Auth::id();
         $lesson->save();
-        return redirect()->back()->with('success','Successfully created a lesson.');
+        return redirect()->route('lessons');
     }
 
     /**

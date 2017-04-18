@@ -11,24 +11,16 @@
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
-
-        body{
-
-            width: 100%;
-            padding-top: 100px;
-        }
+        body{ font-family: 'Raleway', sans-serif; width: 100%; padding-top: 100px;}
         @yield('style')
-
     </style>
 
 </head>
 <body>
-
     <div id="app">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -45,9 +37,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Lessons</a></li>
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -77,10 +69,17 @@
             </div>
         </nav>
         @yield('content')
+        <footer class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2017 OLE
+                </div>
+            </div><!--./row-->
+        </footer>
     </div>
 
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>@yield('script')</script>
+    <script> @yield('script') </script>
 </body>
 </html>

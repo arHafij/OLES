@@ -51,7 +51,9 @@
                                 NO EXAM
                             @endif
                             <p class="">
-                                <a href="{{route('exams.create',$lesson->id)}}" class="btn btn-sm btn-default">Add more</a>
+                                <a href="{{ route('exams.create',$lesson->id) }}" class="btn btn-default">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </a>
                             </p>
                     </div>
                 </div>

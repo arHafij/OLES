@@ -9,7 +9,9 @@ Route::get('/', function () {
 Auth::routes();
 
 // Student
-Route::get('/student', 'StudentController@index');
+Route::get('/student', 'StudentController@index')->name('student');
+Route::get('/student/lessons', 'StudentController@getLessons')->name('student.lessons');
+Route::get('/student/lessons/{id}', 'StudentController@showLesson')->name('student.lessons.show');
 
 // Teacher
 Route::get('/teacher', 'TeacherController@index');
@@ -35,7 +37,10 @@ Route::get('/lessons/{lesson}/exams/{exam}/questions', 'QuestionController@index
 Route::get('/exams/{exam}/questions/create', 'QuestionController@create')->name('questions.create');
 Route::post('/exams/{exam}/questions', 'QuestionController@store')->name('questions.store');
 
-
-
 //Result
 Route::post('/result','ResultController@store')->name('result.store');
+
+//paypal
+Route::get('paywithpaypal', array('as' => 'addmoney.paywithpaypal','uses' => 'AddMoneyController@payWithPaypal',));
+Route::post('paypal', array('as' => 'addmoney.paypal','uses' => 'AddMoneyController@postPaymentWithpaypal',));
+Route::get('paypal', array('as' => 'payment.status','uses' => 'AddMoneyController@getPaymentStatus',));

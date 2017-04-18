@@ -38,7 +38,7 @@
                     </button>
 
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        OLE
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true">OLE</span>
                     </a>
                 </div>
 

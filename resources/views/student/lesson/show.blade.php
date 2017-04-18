@@ -14,7 +14,12 @@
             </aside>
             <!-- Content -->
             <section class="col-md-9">
-
+                <div class="panel panel-default">
+                    <h4 class="panel-heading">{{$lesson->lessons_title}}</h4>
+                    <div class="panel-body">
+                        {{$lesson->lessons_body}}
+                    </div>
+                </div>
             </section>
 
         </div><!--/.row-->
