@@ -17,6 +17,21 @@ class Lesson extends Model
         return $this->hasMany('App\Models\exam');
     }
 
+    public function isPaymentableLesson($id)
+    {
+        $lesson = $this->getLessonById($id);
+        if($lesson->lessons_price > 0.00){
+            return true;
+        }
+        return false;
+    }
+
+    public function getHalfContentLessonById($id){
+        $lesson = $this->getLessonById($id);
+        $half_lesson_length = strlen($lesson->lessons_body)/2;
+        return substr($lesson->lessons_body, 0 ,$half_lesson_length);
+    }
+
     public function getLessonById($id)
     {
         return Lesson::find($id);

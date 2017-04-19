@@ -24,7 +24,7 @@
                             @foreach($lessons->chunk(2) as $chunk_lessons)
                             <div class="row">
                                 @foreach($chunk_lessons as $lesson)
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 thumbnail-wrapper" data-id='{{$lesson->id}}'>
                                         <div class="thumbnail" style="display:block;">
                                             <div class="caption">
                                                 <h3>{{ $lesson->lessons_title }}</h3>
@@ -49,13 +49,13 @@
                                                     <a title="edit" href="{{route('lessons.edit',$lesson->id)}}" class="btn btn-default " role="button">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
-                                                    <a title="delete" href="#" class="btn btn-default lesson-action__delete-link " data-lesson-id="{{$lesson->id}}" role="button" data-toggle="modal" data-target="#myModal">
+                                                    <a onclick="setDeleteLessonURLWithId( {{$lesson->id}} )" title="delete" href="#" class="btn btn-default lesson-action__delete-link" role="button" data-toggle="modal" data-target="#myModal">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </a>
                                                 </p>
                                                 <hr>
                                                 <p class="text-center">
-                                                    <a title="Exam of the lesson" href="{{route('exams',$lesson->id)}}" class="btn btn-default " role="button">
+                                                    <a href="{{route('exams',$lesson->id)}}" class="btn btn-default " role="button">
                                                         Exams <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                                                     </a>
                                                 </p>
@@ -99,27 +99,29 @@
 @endsection
 
 @section('script')
+
+    var lessonId;
     var url;
-    var token = "{{ csrf_token() }}";
+    var token;
+    function setDeleteLessonURLWithId(lessonId){
+        url = '/lessons/' + parseInt( lessonId );
+    }
 
     $('#myModal').on('shown.bs.modal');
 
-    $(".lesson-action__delete-link").click(function(event){
-        event.preventDefault();
-        url = '/lessons/' + $('.lesson-action__delete-link').data('lesson-id');
-    });
-
     $(".modal-footer__yes-btn").click(function(){
+        token = "{{ csrf_token() }}";
         $.ajax({
             url: url,
             type: "post",
-            data: {_token: token, _method: "delete"},
-            success: function(){
-                location.reload();
-                $('#myModal').modal('hide');
-            }
-
+            data: {_token: token, _method: "delete"}
+        })
+        .done(function(lessons){
+            $("[data-id="+'lessonId'+"]").hide();
+            <!-- $('.panel-body').text(lessons); -->
+            $('#myModal').modal('hide');
         });
 
     });
+
 @endsection

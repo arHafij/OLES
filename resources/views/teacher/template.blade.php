@@ -12,6 +12,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body{ font-family: 'Raleway', sans-serif; width: 100%; padding-top: 100px;}
+        main{margin: 50px 0px;}
+        footer {
+            margin:0 auto;
+            width:834px;
+            height:auto;
+            overflow:hidden;
+            position: fixed;
+            bottom: 0px;
+        }
         @yield('style')
     </style>
 
@@ -69,9 +78,9 @@
             </div>
         </nav>
         @yield('content')
-        <footer class="container">
+        <footer class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     &copy; 2017 OLE
                 </div>
             </div><!--./row-->

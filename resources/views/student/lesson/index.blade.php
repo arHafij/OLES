@@ -5,15 +5,11 @@
 @endsection
 
 @section('content')
-    <main class="container">
+    <div class="container">
         <div class="row">
 
-            <!-- Sidebar-->
-            <aside class="col-md-3">
-                @include('student.partials.sidebar')
-            </aside>
             <!-- Content -->
-            <section class="col-md-9">
+            <div class="col-md-9">
                 @foreach( $lessonObj->getAllLessons() as $lesson )
                 <div class="row">
                     <div class="thumbnail" style="background:#fff;">
@@ -35,8 +31,13 @@
                     </div>
                 </div>
                 @endforeach
-            </section>
+            </div>
+
+            <!-- Sidebar-->
+            <div class="col-md-3">
+                @include('student.partials.sidebar')
+            </div>
 
         </div><!--/.row-->
-    </main><!--/.container-->
+    </div><!--/.container-->
 @endsection

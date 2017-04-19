@@ -5,23 +5,33 @@
 @endsection
 
 @section('content')
-    <main class="container">
+    <div class="container">
         <div class="row">
 
-            <!-- Sidebar-->
-            <aside class="col-md-3">
-                @include('student.partials.sidebar')
-            </aside>
             <!-- Content -->
-            <section class="col-md-9">
-                <div class="panel panel-default">
-                    <h4 class="panel-heading">{{$lesson->lessons_title}}</h4>
-                    <div class="panel-body">
-                        {{$lesson->lessons_body}}
+            <div class="col-md-9">
+                <div class="thumbnail" style="background:#fff;">
+                    <div class="caption">
+                        <h3>{{$lesson->lessons_title}}</h3>
+                        <hr>
+                        <p>
+                            @if($lessonObj->isPaymentableLesson($lesson->id))
+                            {{ $lessonObj->getHalfContentLessonById($lesson->id) }}
+                            <a href="#">pay first</a>
+                            @else
+                            <p> {{$lesson->lessons_body}} </p>
+                            @endif
+                        </p>
                     </div>
                 </div>
-            </section>
+            </div>
+
+
+            <!-- Sidebar-->
+            <div class="col-md-3">
+                @include('student.partials.sidebar')
+            </div>
 
         </div><!--/.row-->
-    </main><!--/.container-->
+    </div><!--/.container-->
 @endsection

@@ -113,7 +113,7 @@ class LessonController extends Controller
     {
         $lesson = Lesson::find($id);
         $lesson->delete();
-        $lesson = Lesson::all();
-        return response($lesson,200);
+        $lessons = Lesson::all();
+        return response($lessons,200);
     }
 }
