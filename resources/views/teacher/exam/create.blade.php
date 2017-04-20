@@ -3,36 +3,31 @@
 @section('content')
 <div class="container">
     <div class="row">
-
-        <!-- Sidebar -->
-        <div class="col-md-3">
-           @include('teacher.partials.sidebar')
-        </div>
-
         <!-- Main Content -->
-         <div class="col-md-9">
+        <div class="col-md-9">
             <div class="panel panel-default">
                 <h4 class="panel-heading">Create Exam</h4>
 
                 <div class="panel-body">
-                    <form action="{{route('exams.store',$lesson->id)}}" method="post" class="exam-form">
+                    <form action="{{route('exams.store',$lesson->id)}}" method="post">
                         {{ csrf_field() }}
-
                         <div class="form-group">
-                            <label for="title">Exam Name:</label>
+                            <label for="title">Name</label>
                             <input type="text" class="form-control" name="name">
                             <input type="hidden" value="{{ $lesson->id }}" name="lesson_id">
                         </div>
 
-                        <div class="form-group text-right">
-                            <button type="submit" class="btn btn-default">
-                                <i class="fa fa-check-circle" aria-hidden="true"></i> Save
-                            </button
-                        </div>
+                        <button type="submit" class="btn btn-default text-right">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> Save
+                        </button
                     </form>
                 </div>
             </div>
          </div>
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            @include('teacher.partials.sidebar')
+        </div>
     </div><!--./row-->
 </div><!--./container-->
 @endsection

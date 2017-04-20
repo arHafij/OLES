@@ -17,6 +17,10 @@ class Lesson extends Model
         return $this->hasMany('App\Models\exam');
     }
 
+    public function getAllExamsByLessonId($id){
+        return Lesson::find($id)->exams;
+    }
+
     public function isPaymentableLesson($id)
     {
         $lesson = $this->getLessonById($id);

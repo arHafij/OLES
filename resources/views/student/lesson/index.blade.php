@@ -10,6 +10,8 @@
 
             <!-- Content -->
             <div class="col-md-9">
+                <h2>Recent Lesson</h2>
+                <hr>
                 @foreach( $lessonObj->getAllLessons() as $lesson )
                 <div class="row">
                     <div class="thumbnail" style="background:#fff;">

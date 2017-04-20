@@ -3,20 +3,23 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 // Authentication
 Auth::routes();
 
 // Student
 Route::get('/student', 'StudentController@index')->name('student');
+Route::get('/student/home','StudentController@getHome')->name('student.home');
 Route::get('/student/lessons', 'StudentController@getLessons')->name('student.lessons');
 Route::get('/student/lessons/{id}', 'StudentController@showLesson')->name('student.lessons.show');
 Route::get('/student/profile','StudentController@getProfile')->name('student.profile');
-Route::get('/student/home','StudentController@getHome')->name('student.home');
 
 // Teacher
 Route::get('/teacher', 'TeacherController@index');
+Route::get('/teacher/home','TeacherController@getHome')->name('teacher.home');
+Route::get('/teacher/profile','TeacherController@getProfile')->name('teacher.profile');
+
 
 //Lesson
 Route::get('/lessons', 'LessonController@index')->name('lessons');

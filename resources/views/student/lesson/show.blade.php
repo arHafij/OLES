@@ -24,6 +24,11 @@
                         </p>
                     </div>
                 </div>
+                <div class="student-exam-list">
+                    @if(count($lesson->getAllExamsByLessonId($lesson->id)))
+                        
+                    @endif
+                </div>
             </div>
 
 

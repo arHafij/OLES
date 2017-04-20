@@ -3,12 +3,6 @@
 @section('content')
     <div class="container">
         <div class="row">
-
-            <!-- Sidebar -->
-            <div class="col-md-3">
-                @include('teacher.partials.sidebar')
-            </div>
-
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="lesson">
@@ -17,6 +11,10 @@
                         {{$lesson->lessons_body}}
                     </div>
                 </div>
+            </div>
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                @include('teacher.partials.sidebar')
             </div>
         </div><!--./row-->
     </div><!--./container-->

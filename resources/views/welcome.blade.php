@@ -7,6 +7,7 @@
 
         <title>OLE</title>
         <link href="{{asset('css/animate.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -18,17 +19,24 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-                background: url('img/bg.jpg') center center no-repeat;
-                background-size: cover;
+                background: url('/img/bg.jpg');
+
+                /*background: url('/img/bg.jpg') center center no-repeat;*/
+                /*background-size: cover;*/
             }
 
-            .logo{
-                height: 50px;
-                width: 50px;
+            .logo span{
+                font-size: 20px;
+                color:#000;
+            }
+            .title-element{
+              -webkit-animation-duration: 3s;
+              -webkit-animation-delay: 1s;
+              /*-webkit-animation-iteration-count: infinite;*/
             }
 
             .overlay{
-                background-color: rgba(0,0,0,0.5);
+                /*background-color: rgba(0,0,0,0.5);*/
             }
 
             .full-height {
@@ -64,10 +72,11 @@
 
             .title {
                 font-size: 50px;
+                color:#d35400;
             }
 
             .links > a {
-                color: #eee;
+                color: #000;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 900;
@@ -75,10 +84,8 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-            .links > a:hover {
-                color: #fff;
-                border-bottom: 1px solid #f36557;
-
+            .links > a:hover,.logo span:hover {
+                color: #d35400;
             }
 
             .m-b-md {
@@ -88,12 +95,12 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height overlay">
-            <div class="links top-left">
-                <a href="https://laravel.com/docs">Home</a>
-                <a href="https://laracasts.com">About</a>
-                <a href="https://github.com/laravel/laravel">Blog</a>
-                <a href="https://laravel-news.com">Contact Us</a>
-            </div>
+            <!-- <div class="links top-left">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="h#">Blog</a>
+                <a href="#">Contact Us</a>
+            </div> -->
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -106,9 +113,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    <div><img src="{{asset('img/logo.png')}}" alt="logo" class="logo animated bounce"><div>
-                    Online Learning and Examination
+                <div class="title m-b-md animated fadeIn">
+                    <div class="logo">
+                        <span class="glyphicon glyphicon-grain" aria-hidden="true">OLE</span>
+                    <div>
+                    <div class="title-element animated fadeIn">Online Learning and Examination</div>
                 </div>
             </div>
         </div>

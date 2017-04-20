@@ -40,9 +40,9 @@ class LoginController extends Controller
     }
 
     protected function redirectTo(){
-        
+
         $role = new Role();
-        
+
         if($role->getRoleByAuthenticatedUser( Auth::user()) === 'admin') {
 
             return '/admin';
@@ -50,12 +50,12 @@ class LoginController extends Controller
 
         if($role->getRoleByAuthenticatedUser( Auth::user())=== "teacher") {
 
-            return '/teacher';
+            return '/teacher/home';
         }
 
         if($role->getRoleByAuthenticatedUser( Auth::user()) === "student") {
 
-            return '/student';
+            return '/student/home';
         }
     }
 }

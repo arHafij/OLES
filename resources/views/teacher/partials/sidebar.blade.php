@@ -1,9 +1,8 @@
-<!-- Sidebar -->
 <div class="list-group">
-    <li class="list-group-item list-group-item-default text-center">Sidebar</li>
+    <li class="list-group-item list-group-item-default text-center active">Sidebar</li>
     <a href="{{ route('lessons') }}" class="list-group-item">
         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-         Lesson
+         My Lessons
     </a>
     <a href="{{ route('lessons.create') }}" class="list-group-item">
         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>

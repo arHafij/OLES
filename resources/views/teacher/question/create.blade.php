@@ -3,14 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-
-        <!-- Sidebar -->
-        <div class="col-md-3">
-           @include('teacher.partials.sidebar')
-        </div>
-
         <!-- Main Content -->
-         <div class="col-md-9">
+        <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -28,7 +22,7 @@
 
                 <div class="panel-body">
                     @include('teacher.partials.alert')
-                    <form action="{{route('questions.store',$exam->id)}}" method="post" class=question-form">
+                    <form action="{{route('questions.store',$exam->id)}}" method="post" class="question-form">
                         {{ csrf_field() }}
                         <div class="form-group">
                                 <label for="title">Question Description:</label>
@@ -71,11 +65,12 @@
                     </form>
                 </div>
             </div>
-         </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-3">
+           @include('teacher.partials.sidebar')
+        </div>
     </div><!--./row-->
 </div><!--./container-->
-@endsection
-
-@section('script')
-        CKEDITOR.replace( 'lessons_body' );
 @endsection

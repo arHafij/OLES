@@ -7,72 +7,69 @@
 @section('content')
     <div class="container">
         <div class="row">
-
-            <!-- Sidebar -->
-            <div class="col-md-3">
-               @include('teacher.partials.sidebar')
-            </div>
-
             <!-- Main Content -->
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <h4 class="panel-heading">My Lesson</h4>
-
                     {{--Lesson--}}
                     <div class="panel-body">
-                            @if(count($lessons) > 0)
-                            @foreach($lessons->chunk(2) as $chunk_lessons)
-                            <div class="row">
-                                @foreach($chunk_lessons as $lesson)
-                                    <div class="col-md-6 thumbnail-wrapper" data-id='{{$lesson->id}}'>
-                                        <div class="thumbnail" style="display:block;">
-                                            <div class="caption">
-                                                <h3>{{ $lesson->lessons_title }}</h3>
-                                                @if( strlen($lesson->lessons_body) >= 150 )
-                                                    <p>{{ substr($lesson->lessons_body,0,150) }}</p>
-                                                @else
-                                                    <p>{{ $lesson->lessons_body }}</p>
-                                                @endif
-                                                <hr>
-                                                <p class="price-details text-center">
-                                                    @if($lesson->lessons_price > 0.00)
-                                                        $ {{$lesson->lessons_price}}
-                                                    @else
-                                                        Free
-                                                    @endif
-                                                </p>
-                                                <hr>
-                                                <p class="lesson-action text-center" >
-                                                    <a title="view" href="{{ route('lessons.show',$lesson->id) }}" class="btn btn-default " role="button">
-                                                        <span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                                                    </a>
-                                                    <a title="edit" href="{{route('lessons.edit',$lesson->id)}}" class="btn btn-default " role="button">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </a>
-                                                    <a onclick="setDeleteLessonURLWithId( {{$lesson->id}} )" title="delete" href="#" class="btn btn-default lesson-action__delete-link" role="button" data-toggle="modal" data-target="#myModal">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    </a>
-                                                </p>
-                                                <hr>
-                                                <p class="text-center">
-                                                    <a href="{{route('exams',$lesson->id)}}" class="btn btn-default " role="button">
-                                                        Exams <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
+                        @if(count($lessons) > 0)
+                        @foreach($lessons->chunk(2) as $chunk_lessons)
+                        <div class="row">
+                            @foreach($chunk_lessons as $lesson)
+                            <div class="col-md-6 thumbnail-wrapper" data-id='{{$lesson->id}}'>
+                                <div class="thumbnail" style="display:block;">
+                                    <div class="caption">
+                                        <h3>{{ $lesson->lessons_title }}</h3>
+                                        @if( strlen($lesson->lessons_body) >= 150 )
+                                        <p>{{ substr($lesson->lessons_body,0,150) }}</p>
+                                        @else
+                                        <p>{{ $lesson->lessons_body }}</p>
+                                        @endif
+                                        <hr>
+                                        <p class="price-details text-center">
+                                            @if($lesson->lessons_price > 0.00)
+                                            $ {{$lesson->lessons_price}}
+                                            @else
+                                            Free
+                                            @endif
+                                        </p>
+                                        <hr>
+                                        <p class="lesson-action text-center" >
+                                            <a title="view" href="{{ route('lessons.show',$lesson->id) }}" class="btn btn-default " role="button">
+                                                <span  class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                            </a>
+                                            <a title="edit" href="{{route('lessons.edit',$lesson->id)}}" class="btn btn-default " role="button">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                            <a onclick="setDeleteLessonURLWithId( {{$lesson->id}} )" title="delete" href="#" class="btn btn-default lesson-action__delete-link" role="button" data-toggle="modal" data-target="#myModal">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </p>
+                                        <hr>
+                                        <p class="text-center">
+                                            <a href="{{route('exams',$lesson->id)}}" class="btn btn-default " role="button">
+                                                Exams <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                            </a>
+                                        </p>
                                     </div>
-                                @endforeach
+                                </div>
                             </div>
                             @endforeach
-                            @else
-                                No Lesson
-                            @endif
-                            <a title="edit" href="{{route('lessons.create')}}" class="btn btn-default " role="button">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </a>
+                        </div>
+                        @endforeach
+                        @else
+                        No Lesson
+                        @endif
+                        <a title="edit" href="{{route('lessons.create')}}" class="btn btn-default " role="button">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
                     </div><!--./panel-body-->
                 </div><!--./panel-->
+            </div>
+            <!-- Sidebar -->
+            <div class="col-md-3">
+               @include('teacher.partials.sidebar')
             </div>
         </div><!--./row-->
     </div><!--./container-->
@@ -117,8 +114,7 @@
             data: {_token: token, _method: "delete"}
         })
         .done(function(lessons){
-            $("[data-id="+'lessonId'+"]").hide();
-            <!-- $('.panel-body').text(lessons); -->
+            location.reload();
             $('#myModal').modal('hide');
         });
 
