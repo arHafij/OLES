@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Lesson;
+use App\Models\Exam;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -21,6 +22,19 @@ class StudentController extends Controller
     {
         $lessons = Lesson::orderBy('id','desc')->get();
         return view('student.index',compact('lessons'));
+    }
+
+    public function getExamQuestions($id)
+    {
+
+        $exam = Exam::find($id);
+        $lesson = $exam->lesson;
+
+        $questions = $exam->questions;
+        $total_questions = count($questions);
+        // dd($questions);
+        $counter = 0;
+        return view('student.question.index',compact('lesson','exam','questions','counter','total_questions'));
     }
 
     public function getLessons()

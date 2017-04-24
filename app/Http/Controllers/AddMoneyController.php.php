@@ -47,6 +47,7 @@ class AddMoneyController extends Controller
      */
     public function payWithPaypal()
     {
+
         return view('paywithpaypal');
     }
     /**

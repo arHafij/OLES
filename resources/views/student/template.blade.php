@@ -51,7 +51,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="{{ route('student') }}">
+                        <a class="navbar-brand" href="{{ route('student.home') }}">
                             <span class="glyphicon glyphicon-grain" aria-hidden="true">OLE</span>
                         </a>
                     </div>
@@ -115,5 +115,5 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-</body>
+    @yield('script')
 </html>

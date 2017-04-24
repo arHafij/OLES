@@ -29,10 +29,17 @@ class ResultController extends Controller
         $result->comment = $this->resultCalculationService->getComment($result->total_mark, $result->user_mark);
         $result->user_id = Auth::id();
         $result->save();
+        return redirect()->route('result.show',$result->id);
+    
+
+    }
+
+    public function show($id)
+    {
+        $result = Result::find($id);
         return view(
             'student.result.show',
             ['user_mark'=> $result->user_mark,'total_mark'=>$result->total_mark,'comment'=>$result->comment]
         );
-
     }
 }

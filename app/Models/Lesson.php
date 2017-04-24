@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,15 @@ class Lesson extends Model
     public function exams()
     {
         return $this->hasMany('App\Models\exam');
+    }
+
+    public function votes(){
+
+        return $this->hasMany('App\Models\Vote');
+    }
+
+    public function getLessonsByKeyword( $keyword ){
+        return DB::table('lessons')->where('lessons_title','LIKE',"%{$keyword}%")->get();
     }
 
     public function getAllExamsByLessonId($id){

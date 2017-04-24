@@ -37,6 +37,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Lesson');
     }
 
+    public function votes(){
+
+        return $this->hasMany('App\Models\Vote');
+    }
+
+    public function privileges() {
+      return $this->belongsToMany('App\privilege');
+    }
+
     public function getUserName(){
         return $this->first_name. " ".$this->last_name;
     }
